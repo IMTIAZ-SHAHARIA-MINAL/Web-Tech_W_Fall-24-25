@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Donation — Donor Information</title>
+
+<style>
+    /* Overall page like screenshot */
+    body {
+        background: #ffffff;
+        font-family: "Arial", sans-serif;
+        color: #222;
+        margin: 20px;
+    }
+
+    /* center column container */
+    .page-wrap {
+        width: 780px; /* simulate page width around screenshot */
+        margin: 0 auto;
+        display: flex;
+        gap: 12px;
+    }
+
+    /* left border/empty column to mimic screenshot framing */
+    .frame {
+        width: 20px;
+        background: white;
+        border: 1px solid #ddd;
+    }
+
+    /* main form column */
+    .form-column {
+        width: 550px; /* you chose 550px */
+        background: #eee; /* outer pale grey area like screenshot */
+        padding: 12px;
+        border: 1px solid #ccc;
+    }
+
+    /* white form inner box */
+    .form-inner {
+        background: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: 18px 18px 24px 18px;
+    }
+
+    /* header breadcrumb / required note */
+    .top-note {
+        font-size: 12px;
+        color: #444;
+        margin-bottom: 12px;
+    }
+
+    .breadcrumb {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 12px;
+    }
+
+    h2.section-title {
+        color: #d00;
+        font-size: 16px;
+        margin: 6px 0 14px 0;
+        font-weight: bold;
+    }
+
+    /* two-column label/value rows */
+    .row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+    }
+
+    .row label {
+        width: 130px; /* left label column */
+        font-size: 13px;
+        color: #111;
+    }
+
+    .req { color: #d00; margin-right: 2px; }
+
+    /* input styling consistent with screenshot */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"],
+    input[type="number"],
+    select,
+    textarea {
+        height: 24px;
+        padding: 4px 6px;
+        border: 1px solid #999;
+        background: #fff;
+        font-size: 13px;
+        border-radius: 2px;
+    }
+
+    textarea {
+        height: 100px;
+        width: 320px;
+        resize: vertical;
+        padding: 6px;
+    }
+
+    /* inputs width to match screenshot proportions */
+    .input-wide { width: 320px; }
+    .input-medium { width: 200px; }
+    .input-small { width: 120px; }
+
+    /* horizontally aligned groups (radio/checkbox) */
+    .inline-group {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+
+    /* small note text */
+    .small-note { font-size: 12px; color: #666; margin-top: 4px; }
+
+    /* red errors */
+    .error { color: #c00; font-size: 13px; margin-top: 6px; }
+
+    /* buttons like screenshot */
+    .controls {
+        margin-top: 14px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+
+    button {
+        background: #f2f2f2;
+        border: 1px solid #999;
+        padding: 6px 12px;
+        font-size: 13px;
+        cursor: pointer;
+    }
+
+    button.primary {
+        background: #d00;
+        color: white;
+        border-color: #900;
+    }
+
+    /* section separators */
+    .section-block {
+        margin-top: 14px;
+        padding-top: 10px;
+        border-top: 1px dashed #d0d0d0;
+    }
+
+    .sub-title {
+        color: #d00;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    /* subtle layout tweaks for mobile */
+    @media (max-width: 600px) {
+        .page-wrap { flex-direction: column; align-items:center; }
+        .form-column { width: 100%; }
+        .row { flex-direction: column; align-items: flex-start; }
+        .row label { width: auto; margin-bottom: 6px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+    <div class="frame"></div>
+
+    <div class="form-column">
+
+        <!-- reference image (local path provided) -->
+        <!-- Reference image path (uploaded file): /mnt/data/51b3a672-97bd-4f3a-ac20-56a16fbbcf1e.png -->
+        <div style="text-align:right; font-size:11px; color:#666; margin-bottom:6px;">
+            <em>Design reference shown</em>
+        </div>
+        <div style="text-align:center; margin-bottom:8px;">
+            <img src="/mnt/data/51b3a672-97bd-4f3a-ac20-56a16fbbcf1e.png"
+                 alt="reference" style="max-width:520px; border:1px solid #ddd;">
+        </div>
+
+        <div class="form-inner">
+
+            <div class="top-note"><span class="req">*</span> - Denotes Required Information</div>
+            <div class="breadcrumb">&gt; 1 Donation &nbsp; &gt; 2 Confirmation &nbsp; &gt; Thank You!</div>
+
+            <h2 class="section-title">Donor Information</h2>
+
+            <form id="donationForm" novalidate>
+
+                <!-- First Name -->
+                <div class="row">
+                    <label for="firstName"><span class="req">*</span> First Name</label>
+                    <input id="firstName" name="firstName" class="input-wide" type="text" />
+                </div>
+
+                <!-- Last Name -->
+                <div class="row">
+                    <label for="lastName"><span class="req">*</span> Last Name</label>
+                    <input id="lastName" name="lastName" class="input-wide" type="text" />
+                </div>
+
+                <!-- Company -->
+                <div class="row">
+                    <label for="company">Company</label>
+                    <input id="company" name="company" class="input-wide" type="text" />
+                </div>
+
+                <!-- Address 1 -->
+                <div class="row">
+                    <label for="addr1"><span class="req">*</span> Address 1</label>
+                    <input id="addr1" name="addr1" class="input-wide" type="text" />
+                </div>
+
+                <!-- Address 2 -->
+                <div class="row">
+                    <label for="addr2">Address 2</label>
+                    <input id="addr2" name="addr2" class="input-wide" type="text" />
+                </div>
+
+                <!-- City -->
+                <div class="row">
+                    <label for="city"><span class="req">*</span> City</label>
+                    <input id="city" name="city" class="input-medium" type="text" />
+                </div>
+
+                <!-- State -->
+                <div class="row">
+                    <label for="state"><span class="req">*</span> State</label>
+                    <select id="state" name="state" class="input-small">
+                        <option value="">Select a State</option>
+                        <option>Alabama</option>
+                        <option>Alaska</option>
+                        <option>Arizona</option>
+                        <option>California</option>
+                        <option>New York</option>
+                        <option>Texas</option>
+                        <!-- ... add full list as needed -->
+                    </select>
+                </div>
+
+                <!-- Zip -->
+                <div class="row">
+                    <label for="zip">Zip Code</label>
+                    <input id="zip" name="zip" class="input-small" type="text" />
+                </div>
+
+                <!-- Country -->
+                <div class="row">
+                    <label for="country"><span class="req">*</span> Country</label>
+                    <select id="country" name="country" class="input-medium">
+                        <option value="">Select a Country</option>
+                        <option>United States</option>
+                        <option>Canada</option>
+                        <option>United Kingdom</option>
+                        <option>Bangladesh</option>
+                        <!-- ... -->
+                    </select>
+                </div>
+
+                <!-- Phone / Fax -->
+                <div class="row">
+                    <label for="phone">Phone</label>
+                    <input id="phone" name="phone" class="input-medium" type="tel" />
+                </div>
+
+                <div class="row">
+                    <label for="fax">Fax</label>
+                    <input id="fax" name="fax" class="input-medium" type="text" />
+                </div>
+
+                <!-- Email -->
+                <div class="row">
+                    <label for="email"><span class="req">*</span> Email</label>
+                    <input id="email" name="email" class="input-wide" type="email" />
+                </div>
+
+                <!-- Donation Amount -->
+                <div class="row">
+                    <label><span class="req">*</span> Donation Amount</label>
+                    <div class="inline-group" style="flex-wrap:wrap; max-width:360px;">
+                        <label><input type="radio" name="donation" value="0" checked> None</label>
+                        <label><input type="radio" name="donation" value="50"> $50</label>
+                        <label><input type="radio" name="donation" value="75"> $75</label>
+                        <label><input type="radio" name="donation" value="100"> $100</label>
+                        <label><input type="radio" name="donation" value="250"> $250</label>
+                        <label><input type="radio" name="donation" value="other"> Other</label>
+                    </div>
+                </div>
+
+                <div class="row" id="otherAmountRow" style="display:none;">
+                    <label for="otherAmount">Other Amount $</label>
+                    <input id="otherAmount" name="otherAmount" class="input-medium" type="number" min="1" step="0.01" />
+                </div>
+
+                <!-- Recurring Donation -->
+                <div class="row">
+                    <label>Recurring Donation</label>
+                    <div style="display:flex; flex-direction:column;">
+                        <label><input id="recurringCheck" type="checkbox"> I am interested in giving on a regular basis.</label>
+                        <div id="recurringFields" style="display:none; margin-top:6px;">
+                            <div style="display:flex; gap:8px; align-items:center;">
+                                <label style="width:auto;">Frequency:</label>
+                                <select id="frequency">
+                                    <option value="monthly">Monthly</option>
+                                    <option value="quarterly">Quarterly</option>
+                                    <option value="yearly">Yearly</option>
+                                </select>
+
+                                <label style="width:auto; margin-left:8px;">For</label>
+                                <input id="recurringMonths" type="number" min="1" value="12" class="input-small" />
+                                <label style="width:auto;">Months</label>
+                            </div>
+
+                            <div class="small-note" style="margin-top:6px;">
+                                Monthly Credit Card $ <strong id="recurringTotal">0.00</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Password & Confirm (for future use) -->
+                <div class="row">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" class="input-medium" type="password" />
+                </div>
+
+                <div class="row">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input id="confirmPassword" name="confirmPassword" class="input-medium" type="password" />
+                </div>
+
+                <!-- Honorarium and Memorial Donation Information -->
+                <div class="section-block">
+                    <div class="sub-title">Honorarium and Memorial Donation Information</div>
+
+                    <div class="row">
+                        <label>I would like to make this donation</label>
+                        <div class="inline-group" style="width:360px;">
+                            <label><input type="radio" name="memorial" value="none" checked> None</label>
+                            <label><input type="radio" name="memorial" value="honor"> To Honor</label>
+                            <label><input type="radio" name="memorial" value="memory"> In Memory</label>
+                        </div>
+                    </div>
+
+                    <div id="ackSection" style="display:none; margin-top:8px;">
+                        <div class="row">
+                            <label for="ackName">Name</label>
+                            <input id="ackName" class="input-wide" type="text" />
+                        </div>
+                        <div class="row">
+                            <label for="ackAddress">Address</label>
+                            <input id="ackAddress" class="input-wide" type="text" />
+                        </div>
+                        <div class="row">
+                            <label for="ackCity">City</label>
+                            <input id="ackCity" class="input-medium" type="text" />
+                        </div>
+                        <div class="row">
+                            <label for="ackState">State</label>
+                            <select id="ackState" class="input-small">
+                                <option value="">Select a State</option>
+                                <option>California</option>
+                                <option>New York</option>
+                                <option>Texas</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <label for="ackZip">Zip</label>
+                            <input id="ackZip" class="input-small" type="text" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Information -->
+                <div class="section-block">
+                    <div class="sub-title">Additional Information</div>
+
+                    <div style="margin-bottom:8px; font-size:13px;">
+                        Please enter your name, company or organization as you would like it to appear in our publications:
+                    </div>
+
+                    <div class="row">
+                        <label style="vertical-align:top;">Options</label>
+                        <div style="display:flex; flex-direction:column;">
+                            <label><input type="checkbox" id="anonym"> I would like my gift to remain anonymous.</label>
+                            <label><input type="checkbox" id="match"> My employer offers a matching gift program. I will mail the matching gift form.</label>
+                            <label><input type="checkbox" id="noThanks"> Please save the cost of acknowledging this gift by not mailing a thank you letter.</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label for="comments">Comments</label>
+                        <textarea id="comments" maxlength="300" placeholder="Please type any questions or feedback here"></textarea>
+                    </div>
+                    <div class="row">
+                        <label></label>
+                        <div class="small-note"><span id="charCount">0</span> / 300 characters</div>
+                    </div>
+
+                    <div class="row">
+                        <label>How may we contact you?</label>
+                        <div style="display:flex; gap:8px;">
+                            <label><input type="checkbox" name="contactMethod" value="email"> E-mail</label>
+                            <label><input type="checkbox" name="contactMethod" value="postal"> Postal Mail</label>
+                            <label><input type="checkbox" name="contactMethod" value="phone"> Telephone</label>
+                            <label><input type="checkbox" name="contactMethod" value="fax"> Fax</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label></label>
+                        <div>
+                            <label><input type="checkbox" id="newsEmail"> I would like to receive newsletters and information about special events by E-mail</label><br>
+                            <label><input type="checkbox" id="newsPostal"> I would like to receive newsletters by Postal Mail</label>
+                        </div>
+                    </div>
+
+                    <div class="controls">
+                        <button id="resetBtn" type="reset">Reset</button>
+                        <button id="continueBtn" class="primary" type="submit">Continue</button>
+                    </div>
+
+                    <div id="formError" class="error" style="display:none;"></div>
+
+                </div>
+
+            </form>
+
+        </div> <!-- .form-inner -->
+
+    </div> <!-- .form-column -->
+</div> <!-- .page-wrap -->
+
+<script>
+/*
+ JavaScript behavior & validation
+ - Required fields: firstName, lastName, email, donation amount (not "None"), state, country, addr1, city
+ - Email format validation
+ - Other amount shown when "Other" selected
+ - Recurring donation fields show/hide; calculate recurring total
+ - Confirm password field check (only if password filled)
+ - Reset confirmation
+ - Acknowledge Donation fields show/hide when To Honor/In Memory selected
+ - Comments character count limited to 300 (maxlength enforced)
+*/
+
+// Utility: safe parse currency number and return two decimal places
+function parseCurrency(val) {
+    // convert to Number carefully (digit-by-digit concept applied)
+    let n = Number(String(val).trim());
+    if (isNaN(n) || !isFinite(n)) return 0;
+    // round to cents reliably:
+    return Math.round(n * 100) / 100;
+}
+
+// Elements
+const form = document.getElementById('donationForm');
+const donationRadios = document.getElementsByName('donation');
+const otherAmountRow = document.getElementById('otherAmountRow');
+const otherAmountInput = document.getElementById('otherAmount');
+const recurringCheck = document.getElementById('recurringCheck');
+const recurringFields = document.getElementById('recurringFields');
+const frequencySelect = document.getElementById('frequency');
+const recurringMonthsInput = document.getElementById('recurringMonths');
+const recurringTotalEl = document.getElementById('recurringTotal');
+const memRadios = document.getElementsByName('memorial');
+const ackSection = document.getElementById('ackSection');
+const comments = document.getElementById('comments');
+const charCount = document.getElementById('charCount');
+const resetBtn = document.getElementById('resetBtn');
+const formError = document.getElementById('formError');
+const emailInput = document.getElementById('email');
+const stateSelect = document.getElementById('state');
+const countrySelect = document.getElementById('country');
+const addr1 = document.getElementById('addr1');
+const city = document.getElementById('city');
+const firstName = document.getElementById('firstName');
+const lastName = document.getElementById('lastName');
+const passwordInput = document.getElementById('password');
+const confirmPasswordInput = document.getElementById('confirmPassword');
+
+// --- Default selects (explicit defaults as requested) ---
+stateSelect.value = "";  // default placeholder
+countrySelect.value = ""; // default placeholder
+
+// Show/Hide Other Amount
+function handleDonationChange() {
+    const selected = Array.from(donationRadios).find(r => r.checked);
+    if (!selected) {
+        otherAmountRow.style.display = 'none';
+        return;
+    }
+    if (selected.value === 'other') {
+        otherAmountRow.style.display = '';
+        otherAmountInput.required = true;
+    } else {
+        otherAmountRow.style.display = 'none';
+        otherAmountInput.required = false;
+        otherAmountInput.value = '';
+    }
+    // recalc recurring total when donation amount changes
+    calculateRecurringTotal();
+}
+Array.from(donationRadios).forEach(r => r.addEventListener('change', handleDonationChange));
+handleDonationChange(); // initial
+
+// Recurring show/hide
+recurringCheck.addEventListener('change', function() {
+    recurringFields.style.display = this.checked ? '' : 'none';
+    calculateRecurringTotal();
+});
+
+// recalc when frequency/months/other amount change
+frequencySelect.addEventListener('change', calculateRecurringTotal);
+recurringMonthsInput.addEventListener('input', calculateRecurringTotal);
+otherAmountInput.addEventListener('input', calculateRecurringTotal);
+Array.from(donationRadios).forEach(r => r.addEventListener('change', calculateRecurringTotal));
+
+// Calculate recurring donation total
+function calculateRecurringTotal() {
+    if (!recurringCheck.checked) {
+        recurringTotalEl.textContent = '0.00';
+        return;
+    }
+
+    // Determine donation amount
+    const selected = Array.from(donationRadios).find(r => r.checked);
+    let amount = 0;
+    if (!selected) amount = 0;
+    else if (selected.value === 'other') {
+        amount = parseCurrency(otherAmountInput.value || 0);
+    } else {
+        // careful parse of radio value (string) to number digit-by-digit
+        amount = parseCurrency(selected.value);
+    }
+
+    // months value
+    let months = Math.max(0, Math.floor(Number(recurringMonthsInput.value) || 0));
+
+    // frequency occurrences calculation
+    let occurrences = 0;
+    const freq = frequencySelect.value;
+    if (freq === 'monthly') {
+        occurrences = months;
+    } else if (freq === 'quarterly') {
+        // occurrences every 3 months (round up)
+        occurrences = Math.ceil(months / 3);
+    } else if (freq === 'yearly') {
+        occurrences = Math.ceil(months / 12);
+    } else {
+        occurrences = months;
+    }
+
+    if (occurrences < 0) occurrences = 0;
+
+    // total donation across the recurring schedule = amount * occurrences
+    // compute digit-by-digit by using integer cents to avoid floating precision issues
+    const centsPerDonation = Math.round(amount * 100);
+    const totalCents = centsPerDonation * occurrences;
+    const total = totalCents / 100;
+
+    // show with two decimals
+    recurringTotalEl.textContent = total.toFixed(2);
+}
+
+// Memorial honor show/hide
+Array.from(memRadios).forEach(r => {
+    r.addEventListener('change', function() {
+        if (this.value === 'honor' || this.value === 'memory') {
+            ackSection.style.display = '';
+        } else {
+            ackSection.style.display = 'none';
+        }
+    });
+});
+
+// Comments character count
+comments.addEventListener('input', function() {
+    charCount.textContent = this.value.length.toString();
+});
+
+// Reset confirmation
+resetBtn.addEventListener('click', function(e) {
+    const ok = confirm('Are you sure you want to reset the form?');
+    if (!ok) {
+        e.preventDefault();
+    } else {
+        // reset UI elements that are dynamically shown
+        setTimeout(() => {
+            otherAmountRow.style.display = 'none';
+            recurringFields.style.display = 'none';
+            ackSection.style.display = 'none';
+            recurringTotalEl.textContent = '0.00';
+            formError.style.display = 'none';
+            charCount.textContent = '0';
+        }, 10);
+    }
+});
+
+// Email validation helper
+function isValidEmail(email) {
+    // conservative, reasonable regex
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    return re.test(email);
+}
+
+// Form submission validation
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    formError.style.display = 'none';
+    formError.textContent = '';
+
+    // Required checks
+    const errors = [];
+
+    if (!firstName.value.trim()) errors.push('First Name is required.');
+    if (!lastName.value.trim()) errors.push('Last Name is required.');
+    if (!addr1.value.trim()) errors.push('Address 1 is required.');
+    if (!city.value.trim()) errors.push('City is required.');
+    if (!stateSelect.value.trim()) errors.push('State is required.');
+    if (!countrySelect.value.trim()) errors.push('Country is required.');
+    if (!emailInput.value.trim()) errors.push('Email is required.');
+
+    // Donation must not be None (selected radio value not 0)
+    const selectedDonation = Array.from(donationRadios).find(r => r.checked);
+    let donationAmountNumeric = 0;
+    if (!selectedDonation || selectedDonation.value === '0') {
+        errors.push('Please select a donation amount (None is not allowed).');
+    } else if (selectedDonation.value === 'other') {
+        const v = parseCurrency(otherAmountInput.value || 0);
+        if (v <= 0) errors.push('Please enter a valid Other Amount greater than 0.');
+        donationAmountNumeric = v;
+    } else {
+        donationAmountNumeric = parseCurrency(selectedDonation.value);
+        if (donationAmountNumeric <= 0) errors.push('Please select a valid donation amount.');
+    }
+
+    // Email format validation
+    if (emailInput.value && !isValidEmail(emailInput.value)) {
+        errors.push('Please enter a valid email address.');
+    }
+
+    // Password confirmation (only required if password entered)
+    const passVal = passwordInput.value;
+    const confirmVal = confirmPasswordInput.value;
+    if (passVal) {
+        if (passVal !== confirmVal) errors.push('Password and Confirm Password do not match.');
+        // optionally add complexity checks here
+    }
+
+    // If recurring is checked validate months and donation amount
+    if (recurringCheck.checked) {
+        let months = Math.floor(Number(recurringMonthsInput.value) || 0);
+        if (!months || months <= 0) {
+            errors.push('Please enter a valid number of months for recurring donation.');
+        } else {
+            // also ensure donation amount available (should already be checked)
+        }
+    }
+
+    // Display errors or process form
+    if (errors.length) {
+        formError.innerHTML = errors.join('<br>');
+        formError.style.display = '';
+        // scroll into view if necessary
+        formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+    }
+
+    // If all good, build a summarized confirmation (simulate form submit)
+    const summary = [
+        'Thank you — your donation form is valid.',
+        'Donor: ' + firstName.value.trim() + ' ' + lastName.value.trim(),
+        'Email: ' + emailInput.value.trim(),
+        'Donation Amount: $' + donationAmountNumeric.toFixed(2)
+    ];
+
+    if (recurringCheck.checked) {
+        summary.push('Recurring total (schedule): $' + recurringTotalEl.textContent);
+    }
+
+    alert(summary.join('\\n'));
+    // Here you would continue to submit to server (e.g. form.submit() or fetch)
+    // For this demo we don't do an actual submit.
+});
+</script>
+
+</body>
+</html>
