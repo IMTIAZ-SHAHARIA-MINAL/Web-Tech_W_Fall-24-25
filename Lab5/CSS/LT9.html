@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Portal Layout</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+        }
+
+        /* MAIN WRAPPER */
+        .container {
+            width: 100%;
+            white-space: nowrap; /* prevents wrapping */
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            display: inline-block;
+            width: 20%;
+            background: #3d5a80;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            vertical-align: top;
+            border-right: 3px solid #1a3d66;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            display: inline-block;
+            width: 60%;
+            background: #ffffff;
+            padding: 20px;
+            box-sizing: border-box;
+            vertical-align: top;
+            border-right: 3px solid #ccc;
+        }
+
+        /* ADVERTISEMENT PANEL */
+        .advertisement {
+            display: inline-block;
+            width: 20%;
+            background: #ee6c4d;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            vertical-align: top;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h2>Categories</h2>
+            <p>• Sports</p>
+            <p>• Technology</p>
+            <p>• Health</p>
+            <p>• Entertainment</p>
+        </div>
+
+        <!-- MAIN CONTENT SECTION -->
+        <div class="main-content">
+            <h2>Top News Headlines</h2>
+            <p>
+                Breaking News: A major update in the tech world! Leading companies announce 
+                new innovations aimed at improving daily life. Stay tuned for more details.
+            </p>
+            <p>
+                In sports, the national team prepares for the upcoming championship with 
+                high hopes and strong determination.
+            </p>
+        </div>
+
+        <!-- ADVERTISEMENT PANEL -->
+        <div class="advertisement">
+            <h2>Advertisements</h2>
+            <p>Buy one, get one free! Limited-time offer.</p>
+            <p>New smartphones now available at discounted prices!</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

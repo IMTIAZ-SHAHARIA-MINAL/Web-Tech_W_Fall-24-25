@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+<style>
+body {
+    background: #f3f6fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+.container {
+    background: white;
+    padding: 30px;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+h2 {
+    text-align: center;
+}
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.error-box {
+    background: #ffd3d3;
+    padding: 10px;
+    color: red;
+    border-left: 4px solid red;
+    display: none;
+    margin-bottom: 10px;
+}
+.success-box {
+    background: #d3ffd9;
+    padding: 10px;
+    color: green;
+    border-left: 4px solid green;
+    display: none;
+    margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🔐 Login</h2>
+
+    <div id="errorMsg" class="error-box"></div>
+    <div id="successMsg" class="success-box"></div>
+
+    <input type="text" id="email" placeholder="Enter Email">
+    <input type="password" id="password" placeholder="Enter Password">
+
+    <button onclick="login()">Login</button>
+
+    <p style="text-align:center; margin-top:10px;">
+        Don't have an account? <a href="#">Register</a>
+    </p>
+</div>
+
+
+<script>
+// Dummy user (JS–side only)
+const correctEmail = "imtiaz@example.com";
+const correctPassword = "12345";
+
+let attempts = 0;
+let blockTime = false;
+
+function showError(msg) {
+    let box = document.getElementById("errorMsg");
+    box.style.display = "block";
+    box.innerHTML = msg;
+}
+
+function showSuccess(msg) {
+    let box = document.getElementById("successMsg");
+    box.style.display = "block";
+    box.innerHTML = msg;
+}
+
+function login() {
+
+    if (blockTime) {
+        showError("Too many attempts! Try again after 1 minute.");
+        return;
+    }
+
+    let email = document.getElementById("email").value.trim();
+    let pass = document.getElementById("password").value.trim();
+
+    // Email empty check
+    if (email === "") {
+        showError("Email ফাঁকা রাখা যাবে না!");
+        return;
+    }
+
+    // Email format check
+    if (!email.includes("@") || !email.includes(".")) {
+        showError("Invalid email format!");
+        return;
+    }
+
+    // Password empty check
+    if (pass === "") {
+        showError("Password ফাঁকা রাখা যাবে না!");
+        return;
+    }
+
+    // Match check
+    if (email === correctEmail && pass === correctPassword) {
+        showSuccess("Login Successful! Redirecting...");
+
+        setTimeout(() => {
+            window.location.href = "dashboard.html";
+        }, 1500);
+
+    } else {
+        attempts++;
+        showError("Invalid email or password!");
+
+        if (attempts >= 5) {
+            blockTime = true;
+            showError("Too many attempts! Login blocked for 1 minute.");
+
+            setTimeout(() => {
+                attempts = 0;
+                blockTime = false;
+                document.getElementById("errorMsg").style.display = "none";
+            }, 60000);
+        }
+    }
+}
+</script>
+
+</body>
+</html>

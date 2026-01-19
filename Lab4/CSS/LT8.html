@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Overflow Handling</title>
+
+    <style>
+
+        .box {
+            width: 300px;
+            height: 200px;
+            border: 3px solid black;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f5f5f5;
+        }
+
+        #visible-box {
+            overflow: visible;  
+        }
+
+        #hidden-box {
+            overflow: hidden;
+        }
+
+        #scroll-box {
+            overflow: scroll;
+        }
+
+        #auto-box {
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Overflow: visible</h2>
+    <div id="visible-box" class="box">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum gravida ligula at 
+        ipsum efficitur, eget semper eros tincidunt. Pellentesque habitant morbi tristique 
+        senectus et netus et malesuada fames ac turpis egestas. Integer cursus, libero vitae 
+        consequat cursus, risus metus ultrices mi, eget mattis metus ligula et ipsum.
+    </div>
+
+    <h2>Overflow: hidden</h2>
+    <div id="hidden-box" class="box">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum gravida ligula at 
+        ipsum efficitur, eget semper eros tincidunt. Pellentesque habitant morbi tristique 
+        senectus et netus et malesuada fames ac turpis egestas. Integer cursus, libero vitae 
+        consequat cursus, risus metus ultrices mi, eget mattis metus ligula et ipsum.
+    </div>
+
+    <h2>Overflow: scroll</h2>
+    <div id="scroll-box" class="box">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum gravida ligula at 
+        ipsum efficitur, eget semper eros tincidunt. Pellentesque habitant morbi tristique 
+        senectus et netus et malesuada fames ac turpis egestas. Integer cursus, libero vitae 
+        consequat cursus, risus metus ultrices mi, eget mattis metus ligula et ipsum.
+    </div>
+
+    <h2>Overflow: auto</h2>
+    <div id="auto-box" class="box">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum gravida ligula at 
+        ipsum efficitur, eget semper eros tincidunt. Pellentesque habitant morbi tristique 
+        senectus et netus et malesuada fames ac turpis egestas. Integer cursus, libero vitae 
+        consequat cursus, risus metus ultrices mi, eget mattis metus ligula et ipsum.
+    </div>
+
+</body>
+</html>

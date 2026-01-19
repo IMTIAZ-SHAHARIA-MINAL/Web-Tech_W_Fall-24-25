@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  a{
+    text-decoration: none;
+  }
+  
+  body, html{
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .container{
+    display: flex;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .image-half{
+    flex: 1;
+    background-image: url('images/pexels-reneterp-1581384.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .text-half{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: hsla(0, 0%, 100%, 0.92);
+    padding: 2rem;
+    box-shadow: -2px 0 20px hsla(0, 0%, 0%, 0.15);
+    border-radius: 0 0 0 8px;
+  }
+  
+  .text-half h1{
+    margin-bottom: 20px;
+    color: hsl(210, 29%, 24%);
+    font-size: 32px;
+  }
+  
+  table{
+    width: 100%;
+    max-width: 450px;
+  }
+  
+  td{
+    padding: 10px;
+    color: hsl(210, 29%, 29%);
+  }
+  
+  input[type="text"], input[type="email"], input[type="date"], input[type="tel"], input[type="password"], select{
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 6px;
+    background-color: hsl(0, 0%, 98%);
+  }
+  
+  #submit{
+    background-color: hsl(269, 85%, 53%);
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #submit:hover{
+    background-color: hsl(267, 83%, 33%);
+  }
+  
+  a[href="login.html"]{
+    color: #2575fc;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  #table{
+    font-size: 15px;
+    color: red;
+    text-align: center;
+  }
+  
