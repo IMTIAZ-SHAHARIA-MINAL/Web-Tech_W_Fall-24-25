@@ -25,30 +25,89 @@ $conn->close();
     <meta charset="UTF-8">
     <title>Booking History</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
         }
+
+        /* Page title */
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Card container effect */
         table {
             width: 100%;
             border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            font-size: 14px;
         }
+
+        /* Table cells */
         th, td {
-            padding: 10px;
+            padding: 12px;
+            text-align: left;
             border-bottom: 1px solid #ddd;
         }
+
+        /* Table header */
         th {
-            background-color: #34495e;
+            background-color: #667eea;
             color: white;
+            font-weight: 600;
         }
+
+        /* Row hover */
+        tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Back button */
+        button {
+            padding: 10px 20px;
+            background-color: #140205;  
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #560a0d;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            body {
+                padding: 10px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+        }
+
     </style>
 </head>
 <body>
 
 <div style="margin-bottom: 15px;">
-    <a href="admin_dashboard.php" style="text-decoration: none;">
-        <button type="button" style="background-color: #2980b9; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-            ⬅ Back to Dashboard
+    <a style="text-decoration: none;">
+        <button type="button" onclick="window.history.back()">
+            Back to Dashboard
         </button>
     </a>
 </div>

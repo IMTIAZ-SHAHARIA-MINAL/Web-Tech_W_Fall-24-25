@@ -265,10 +265,6 @@ button:hover {
     <h2>Admin Dashboard</h2>
     <!-- Basic Icons -->
     <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <!-- Filled Icons -->
-    <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
-    <!-- Brand Icons -->
-    <link href="https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css" rel="stylesheet">
     <a href="user_information.php"><span class="icon"><i class='bx  bx-group'></i> </span>Manage Users</a>
     <a href="add_facilities.php"><span class="icon"><i class='bx  bx-list-plus'></i> </span>Add Facility</a>
     <a href="booking_history.php"><span class="icon"><i class='bx  bx-book-library'></i> </span>Booking History</a>

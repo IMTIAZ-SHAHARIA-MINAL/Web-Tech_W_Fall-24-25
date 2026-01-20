@@ -69,8 +69,11 @@ $conn->close();
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            min-height: 100vh;
+            
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;

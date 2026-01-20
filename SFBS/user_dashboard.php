@@ -163,7 +163,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'User') {
 
         <!-- Welcome Card -->
         <div class="header-card">
-            <h1>Welcome, <?= htmlspecialchars($_SESSION['username']); ?> 👋</h1>
+            <h1>Welcome, <?= htmlspecialchars($_SESSION['username']); ?></h1>
             <p>You can browse available sports facilities and book your preferred ground.</p>
         </div>
 

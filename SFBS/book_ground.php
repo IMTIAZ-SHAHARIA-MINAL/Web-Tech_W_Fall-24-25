@@ -25,93 +25,140 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Ground</title>
     <style>
-        /* Layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Page background */
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            background-color: #f4f4f9;
+            padding: 25px;
+            color: #2c3e50;
         }
 
-        .container {
-            display: flex;
-            gap: 50px;
-            margin-top: 20px;
-        }
-
-        .available-grounds, .booking-form {
-            flex: 1;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow-y: scroll;
-            overflow-x: scroll;
-        }
-
-        h3 {
+        /* Page title */
+        h1 {
+            font-size: 22px;
             margin-bottom: 20px;
             color: #2c3e50;
         }
 
+        /* Main layout */
+        .container {
+            display: flex;
+            gap: 25px;
+        }
+
+        /* Cards (same style as dashboard cards) */
+        .available-grounds,
+        .booking-form {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        /* Section headings */
+        h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #2c3e50;
+        }
+
+        /* Filter info */
+        .filter-info {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Table styling */
         table {
             width: 100%;
             border-collapse: collapse;
+            font-size: 14px;
         }
 
-        table th, table td {
+        table th,
+        table td {
             padding: 10px;
-            text-align: left;
             border-bottom: 1px solid #ddd;
+            text-align: left;
         }
 
         table th {
             background-color: #34495e;
-            color: white;
+            color: #ffffff;
+            font-weight: 600;
         }
 
         table tbody tr {
             cursor: pointer;
+            transition: background-color 0.2s ease;
         }
 
         table tbody tr:hover {
             background-color: #f1f1f1;
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        input, select {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        button {
-            padding: 10px;
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
+        /* Images */
         img {
             max-width: 150px;
             max-height: 100px;
             object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* Form layout */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Labels */
+        label {
+            font-size: 14px;
+            color: #2c3e50;
+        }
+
+        /* Inputs & selects */
+        input,
+        select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Buttons */
+        button {
+            padding: 10px;
+            background-color: #2c3e50;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
         }
 
         button:hover {
             background-color: #34495e;
         }
 
-        .filter-info {
-            margin-bottom: 10px;
-            font-size: 14px;
-            color: #555;
+        /* Mobile responsiveness */
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+            }
         }
+
     </style>
 </head>
 <body>
@@ -162,7 +209,7 @@ $conn->close();
         <!-- Booking Form -->
         <div class="booking-form">
             <h3>Book a Ground</h3>
-            <form action="booking_process.php" method="post" onsubmit="return validateBookingForm(event)">
+                <form action="payment_gateway.php" method="post" onsubmit="return validateBookingForm(event)">
                 <label for="user_name">Your Name:</label>
                 <input type="text" id="user_name" name="user_name" value="<?= htmlspecialchars($username) ?>" readonly required>
 
@@ -184,7 +231,7 @@ $conn->close();
 
                 <input type="hidden" name="user_id" value="<?= htmlspecialchars($user_id) ?>" required>
 
-                <button type="submit" name="book_ground">Book Ground</button>
+                <button type="submit">Proceed to Payment</button>
                 <button type="button" onclick="window.history.back()">Back</button>
             </form>
 

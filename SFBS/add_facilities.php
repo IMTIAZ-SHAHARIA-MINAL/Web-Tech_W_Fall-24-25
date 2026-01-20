@@ -4,13 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Facility</title>
-    <link rel="stylesheet" href="addfacility.css" />
+    <!--<link rel="stylesheet" href="addfacility.css" />-->
 </head>
 <body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 30px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        /* Page title */
+        h1 {
+            text-align: center;
+            margin: 30px 0;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* Form card */
+        form {
+            max-width: 650px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+        }
+
+        /* Form rows */
+        form > div {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 18px;
+        }
+
+        /* Labels */
+        label {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #2c3e50;
+        }
+
+        /* Inputs */
+        input,
+        select {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 6px rgba(102,126,234,0.4);
+        }
+
+        /* File input */
+        input[type="file"] {
+            padding: 8px;
+        }
+
+        /* Submit button */
+        button {
+            background-color: #1f2937 !important; /* Dark charcoal */
+            color: #ffffff !important;
+            font-weight: 600;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #111827 !important;
+            transform: translateY(-1px);
+        }
+
+
+        /* Back button override (even with inline styles) */
+        button[type="button"] {
+            border-radius: 8px !important;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            form {
+                padding: 22px;
+            }
+        }
+
+    </style>
     <div style="margin-bottom: 15px;">
         <a style="text-decoration: none;">
             <button type="button" onclick="window.history.back()" style="background-color: #2980b9; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-                ⬅ Back to Dashboard
+                Back to Dashboard
             </button>
         </a>
     </div>

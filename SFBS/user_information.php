@@ -141,33 +141,187 @@ $conflicts = $_SESSION['conflicts_to_resolve'] ?? [];
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>User Information</title>
 <style>
-body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
-.container { max-width: 1200px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
-h1 { text-align: center; margin-bottom: 20px; }
-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-table th, table td { padding: 10px; border: 1px solid #ddd; text-align: left; }
-table th { background-color: #34495e; color: white; }
-input[type="checkbox"] { transform: scale(1.2); }
-button { padding: 10px 20px; margin-top: 15px; margin-right: 10px; border: none; border-radius: 5px; cursor: pointer; }
-button#edit_role { background-color: #2c3e50; color: white; }
-button#edit_role:hover { background-color: #34495e; }
-button#deactivate { background-color: #c0392b; color: white; }
-button#deactivate:hover { background-color: #e74c3c; }
-button#reactivate { background-color: #27ae60; color: white; }
-button#reactivate:hover { background-color: #2ecc71; }
-select { padding: 5px; margin-left: 10px; }
-.msg { padding: 10px; background-color: #dff0d8; color: #3c763d; border-radius: 4px; margin-bottom: 10px; }
-.conflict-table { margin-top: 20px; border: 1px solid #ddd; width: 100%; border-collapse: collapse; }
-.conflict-table th, .conflict-table td { border: 1px solid #ddd; padding: 8px; }
-.conflict-table th { background-color: #e67e22; color: white; }
+    body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        min-height: 100vh;
+    }
+
+    /* Main card container */
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+
+    /* Headings */
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    h2, h3 {
+        color: #333;
+        margin-top: 25px;
+    }
+
+    /* Tables */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+
+    table th,
+    table td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+
+    table th {
+        background-color: #667eea;
+        color: #ffffff;
+        font-weight: 600;
+    }
+
+    table tr:hover {
+        background-color: #f0f0f0;
+    }
+
+    /* Conflict table */
+    .conflict-table {
+        margin-top: 15px;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .conflict-table th,
+    .conflict-table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .conflict-table th {
+        background-color: #e67e22;
+        color: white;
+    }
+
+    /* Buttons */
+    button {
+        padding: 10px 20px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition: 0.3s;
+        font-size: 14px;
+    }
+
+    button#edit_role {
+        background-color: #667eea;
+        color: white;
+    }
+
+    button#edit_role:hover {
+        background-color: #5a67d8;
+    }
+
+    button#deactivate {
+        background-color: #e74c3c;
+        color: white;
+    }
+
+    button#deactivate:hover {
+        background-color: #c0392b;
+    }
+
+    button#reactivate {
+        background-color: #38a169;
+        color: white;
+    }
+
+    button#reactivate:hover {
+        background-color: #2f855a;
+    }
+
+    /* Back button */
+    button[type="button"] {
+        background-color: #140205;
+        color: white;
+    }
+
+    button[type="button"]:hover {
+        background-color: #560a0d;
+    }
+
+    /* Select dropdown */
+    select {
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin-left: 8px;
+    }
+
+    /* Checkboxes */
+    input[type="checkbox"] {
+        transform: scale(1.2);
+    }
+
+    /* Messages */
+    .msg {
+        padding: 12px 15px;
+        background-color: #38a169;
+        color: white;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-weight: 500;
+        animation: fadeIn 0.8s ease forwards;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-5px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        body {
+            padding: 10px;
+        }
+
+        .container {
+            padding: 15px;
+        }
+
+        table {
+            font-size: 13px;
+        }
+    }
+
 </style>
 </head>
 <body>
 
 <div style="margin-bottom: 15px;">
     <a style="text-decoration: none;">
-        <button type="button" onclick="window.history.back()" style="background-color: #2980b9; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-            ⬅ Back to Dashboard
+        <button type="button" onclick="window.history.back()" >
+            Back to Dashboard
         </button>
     </a>
 </div>
@@ -196,7 +350,9 @@ select { padding: 5px; margin-left: 10px; }
             <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td>
-                        <?php if ($row['role'] !== 'Admin' && $row['id'] != $_SESSION['user_id']): ?>
+                        <?php if ($_SESSION['role'] === 'Admin' && $row['id'] != $_SESSION['user_id']): ?>
+                            <input type="checkbox" name="selected_users[]" value="<?= $row['id']; ?>">
+                        <?php elseif ($row['role'] !== 'Admin' && $row['id'] != $_SESSION['user_id']): ?>
                             <input type="checkbox" name="selected_users[]" value="<?= $row['id']; ?>">
                         <?php else: ?>
                             N/A
@@ -222,7 +378,10 @@ select { padding: 5px; margin-left: 10px; }
         <label for="new_role">New Role:</label>
         <select name="new_role" id="new_role">
             <option value="User">User</option>
-            <option value="Admin">Admin</option>
+            <option value="Manager">Manager</option>
+            <?php if ($_SESSION['role'] === 'Admin'): ?>
+                <option value="Admin">Admin</option>
+            <?php endif; ?>
         </select>
         <button type="submit" name="edit_role" id="edit_role">Edit Role</button>
         <button type="submit" name="deactivate" id="deactivate" onclick="return confirm('Are you sure you want to deactivate selected users?');">Deactivate</button>

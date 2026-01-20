@@ -1,7 +1,21 @@
 <?php
-
-// Database connection
+session_start();
 require_once 'db_connect.php';
+
+// Fetch manager's first name
+$first_name = 'Manager'; // Default fallback
+if (isset($_SESSION['user_id'])) {
+    $user_id = intval($_SESSION['user_id']);
+    $stmt = $conn->prepare("SELECT first_name FROM users WHERE id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $first_name = $row['first_name'];
+    }
+    $stmt->close();
+}
 
 // Fetch facilities from the database
 $sql = "SELECT * FROM facilities";
@@ -66,17 +80,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "<script>alert('No facility found with the given ID.');</script>";
         }
     }
-
-  }
-
-
-
+}
 
 $conn->close();
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -85,18 +92,16 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manager Dashboard</title>
     <style>
-        /* Basic Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        /* Dashboard Layout */
         body {
             display: flex;
-            height: 100vh;
+            min-height: 100vh;
             background-color: #f4f4f9;
         }
 
@@ -104,24 +109,23 @@ $conn->close();
         .sidebar {
             width: 250px;
             background-color: #2c3e50;
-            color: white;
+            color: #ecf0f1;
             display: flex;
             flex-direction: column;
             padding: 20px;
         }
 
         .sidebar h2 {
-            margin-bottom: 20px;
             text-align: center;
-            color: #ecf0f1;
+            margin-bottom: 25px;
         }
 
         .sidebar a {
             text-decoration: none;
             color: #ecf0f1;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
             display: block;
         }
 
@@ -135,24 +139,49 @@ $conn->close();
             text-align: center;
         }
 
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .sidebar .logout:hover {
+            background-color: #c0392b;
         }
 
-        .container {
-            background-color: white;
+        /* Main content */
+        .main-content {
+            flex: 1;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Header card */
+        .header-card {
+            background: #ffffff;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header-card h1 {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .header-card p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        /* Grounds container */
+        .container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .container h3 {
             margin-bottom: 20px;
+            color: #2c3e50;
         }
 
         table {
@@ -172,7 +201,7 @@ $conn->close();
         }
 
         table tr:hover {
-            background-color: #f2f2f2;
+            background-color: #f1f1f1;
         }
 
         form {
@@ -204,23 +233,42 @@ $conn->close();
         button:hover {
             background-color: #34495e;
         }
+
+        img {
+            max-width: 100px;
+            max-height: 80px;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- Sidebar -->
     <div class="sidebar">
         <h2>Manager Dashboard</h2>
-        
-        <a href="user_information.php"> Manage User</a>
-        <a href="add_facilities.php"> Add Facility</a>
-        <a href="booking_history.php">BOOKING HISTORY</a>
-        <a href="logout.php" class="logout">Logout</a>
+        <!-- Basic Icons -->
+        <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+        <a href="user_information.php"><span class="icon"><i class='bx  bx-group'></i> </span>Manage Users</a>
+        <a href="add_facilities.php"><span class="icon"><i class='bx  bx-list-plus'></i> </span>Add Facility</a>
+        <a href="booking_history.php"><span class="icon"><i class='bx  bx-book-library'></i> </span>Booking History</a>
+        <a href="logout.php" class="logout"><span class="icon"><i class='bx  bx-arrow-out-left-square-half'></i> </span>Logout</a>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-        <!-- Top Container: Display Facilities -->
-        <div class="container" id="manage-facilities">
+        <!-- Welcome Card -->
+        <div class="header-card">
+            <h1>Welcome, <?= htmlspecialchars($first_name); ?></h1>
+            <p>Manage facilities, update details, and oversee bookings.</p>
+        </div>
+
+        <!-- Facilities Display -->
+        <div class="container">
             <h3>Ground Availability</h3>
             <table>
                 <thead>
@@ -244,32 +292,33 @@ $conn->close();
                                 <td><?= htmlspecialchars($row['facility_type']); ?></td>
                                 <td><?= htmlspecialchars($row['available_duration']); ?></td>
                                 <td><?= htmlspecialchars($row['fees']); ?></td>
-                                <td><img src="<?= htmlspecialchars($row['ground_picture']); ?>" alt="Ground Image" style="width: 100px; height: 80px; object-fit: cover;"></td>
+                                <td><img src="<?= htmlspecialchars($row['ground_picture']); ?>" alt="Ground Image"></td>
                             </tr>
                         <?php endwhile; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="6">No facilities available</td>
+                            <td colspan="7">No facilities available</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>
             </table>
         </div>
 
+        <!-- Update Facility Form -->
         <div class="container">
-            <h3>Update/Facility</h3>
+            <h3>Update Facility</h3>
             <form method="POST" action="" enctype="multipart/form-data">
                 <label for="id">Facility ID:</label>
                 <input type="number" id="id" name="id" required>
 
                 <label for="ground_name">Ground Name:</label>
-                <input type="text" id="ground_name" name="ground_name" >
+                <input type="text" id="ground_name" name="ground_name">
 
                 <label for="ground_location">Ground Location:</label>
-                <input type="text" id="ground_location" name="ground_location" >
+                <input type="text" id="ground_location" name="ground_location">
 
                 <label for="facility_type">Facility Type:</label>
-                <select id="facility_type" name="facility_type" >
+                <select id="facility_type" name="facility_type">
                     <option value="Football Ground">Football Ground</option>
                     <option value="Cricket Ground">Cricket Ground</option>
                     <option value="Badminton Court">Badminton Court</option>
@@ -278,16 +327,15 @@ $conn->close();
                 </select>
 
                 <label for="available_duration">Available Duration:</label>
-                <input type="text" id="available_duration" name="available_duration" placeholder="e.g., 8:00 AM - 10:00 PM" >
+                <input type="text" id="available_duration" name="available_duration" placeholder="e.g., 8:00 AM - 10:00 PM">
 
-                <label for="fees">FEES:</label>
-                <input type="text" id="fees" name="fees" placeholder="data" >
+                <label for="fees">Fees:</label>
+                <input type="text" id="fees" name="fees" placeholder="Enter fees">
 
                 <label for="ground_picture">Ground Image:</label>
                 <input type="file" id="ground_picture" name="ground_picture" accept="image/*">
 
                 <button type="submit" name="update">Update Facility</button>
-            
             </form>
         </div>
     </div>
